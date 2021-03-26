@@ -1,19 +1,33 @@
 // Write your JavaScript code here!
 window.addEventListener("load", function() {
-   const form = document.getElementById("launchForm");
+      
+   // let json = [];
+   fetch("https://handlers.education.launchcode.org/static/planets.json").then(function(response) {
+      response.json().then(function(json) {
+      const div = document.querySelector("missionTarget");
+      //  let planets = '';
+       let data = json[1];
+         // for(planet of json){
+         // planet =  
+        div.innerHTML =  `
+         <h2>Mission Destination</h2>
+            <ol>
+                <li>Name: ${data.name}</li>
+                <li>Diameter: ${data.diameter}</li>
+                <li>Star: ${data.star}</li>
+                <li>Distance from Earth: ${data.distance}</li>
+                <li>Number of Moons: ${data.moons}</li>
+            </ol>
+        <img src="${data.image}"></img>`;
+      });
+      // missionTarget.innerHTML = planets;
+      //  let index = 0;
+       
+   });
+      const form = document.getElementById("launchForm");
 
-   form.addEventListener("submit", function(event) {
-   
-   
-   let json = [];
-   fetch("https://handlers.education.launchcode.org/static/planets.json").then(function(response) {response.json().then(function(json) {
-       const missionTarget = document.querySelector("#missionTarget");
-       
-       let index = 0;
-       
-   })});
-   
-       const pilotName = document.querySelector("pilotName");
+       form.addEventListener("submit", function(event) {
+       const pilotName = document.querySelector("input[name=pilotName]");
        const copilotName = document.querySelector("input[name=copilotName]");
        const fuelLevel = document.querySelector("input[name=fuelLevel]");
        const cargoMass = document.querySelector("input[name=cargoMass]");
