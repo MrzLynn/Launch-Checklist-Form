@@ -1,14 +1,53 @@
 // Write your JavaScript code here!
 window.addEventListener("load", function() {
-      
-   // let json = [];
+   let form = document.getElementById("launchForm");
+   form.addEventListener("submit", function(event) {
+   event.preventDefault(); 
+   const pilotName = document.querySelector("input[name=pilotName]");
+   const copilotName = document.querySelector("input[name=copilotName]");
+   const fuelLevel = document.querySelector("input[name=fuelLevel]");
+   const cargoMass = document.querySelector("input[name=cargoMass]");
+   const faultyItems = document.getElementById("faultyItems");   
+   const launchStatus = document.getElementById("launchStatus");
+
+   
+
+   if (pilotName.value === "" || isNaN(pilotName.value) && copilotName.value === "" || isNaN(copilotName.value) && !isNaN(fuelLevel.value) && !isNaN(cargoMass.value)) {
+     alert("All fields are required!");
+     // stop the form submission 
+            
+  }
+   if (fuelLevel.value < 10000) {
+     fuelLevel.innerHTML = Number(fuelLevel.innerHTML);
+     faultyItems.style.visibilty = visible;
+     launchStatus.innerHTML = "Shuttle not ready for launch";
+     colorBackground.style.background = 'red';
+   }
+   if (cargoMass.value > 10000) {
+     cargoMass.innerHTML = Number(cargoMass.innerHTML);
+     faultyItems.style.visibilty = visible;
+     launchStatus.innerHTML = "Shuttle not ready for launch";
+     colorBackground.style.background = 'red';
+   } else {
+      launchStatus.innerHTML = "Shuttle is ready to launch";
+      colorBackground.style.background = 'green';
+   }
+  console.log(launchStatus);
+  const pilot = document.getElementById("pilotStatus");
+  const copilot = document.getElementById("copilotStatus");
+  pilot.innerHTML = `${pilotName} is ready for launch`;
+  copilot.innerHTML = `${copilotName} is ready for launch`;
+  console.log(pilot.innerHTML);
+  console.log(copilot.innerHTML);
+  
+});  
+   
    fetch("https://handlers.education.launchcode.org/static/planets.json").then(function(response) {
       response.json().then(function(json) {
-      const div = document.querySelector("missionTarget");
-      //  let planets = '';
+      const div = document.querySelector("#missionTarget");
+      
        let data = json[1];
-         // for(planet of json){
-         // planet =  
+           
         div.innerHTML =  `
          <h2>Mission Destination</h2>
             <ol>
@@ -19,48 +58,13 @@ window.addEventListener("load", function() {
                 <li>Number of Moons: ${data.moons}</li>
             </ol>
         <img src="${data.image}"></img>`;
+        
       });
-      // missionTarget.innerHTML = planets;
-      //  let index = 0;
+      
+      
        
    });
-      const form = document.getElementById("launchForm");
-
-       form.addEventListener("submit", function(event) {
-       const pilotName = document.querySelector("input[name=pilotName]");
-       const copilotName = document.querySelector("input[name=copilotName]");
-       const fuelLevel = document.querySelector("input[name=fuelLevel]");
-       const cargoMass = document.querySelector("input[name=cargoMass]");
-       const faultyItems = document.getElementById("faultyItems");
-       
-       const launchStatus = document.getElementById("launchStatus");
-       if (pilotName.value === "" || isNaN(pilotName.value) || copilotName.value === "" || isNaN(copilotName.value) || !isNaN(fuelLevel.value) || !isNaN(cargoMass.value)) {
-         alert("All fields are required!");
-         // stop the form submission 
-         event.preventDefault();        
-      }
-       if (fuelLevel < 10000) {
-         fuelLevel.innerHTML = Number(fuelLevel.innerHTML);
-         faultyItems.style.visibilty = visible;
-         launchStatus.innerHTML = "Shuttle not ready for launch";
-         colorBackground.style.background = 'red';
-       }
-       if (cargoMass > 10000) {
-         cargoMass.innerHTML = Number(cargoMass.innerHTML);
-         faultyItems.style.visibilty = visible;
-         launchStatus.innerHTML = "Shuttle not ready for launch";
-         colorBackground.style.background = 'red';
-       } else {
-          launchStatus.innerHTML = "Shuttle is ready to launch";
-          colorBackground.style.background = 'green';
-       }
-      const pilot = document.getElementById("pilotStatus");
-      const copilot = document.getElementById("copilotStatus");
-      pilot.innerHTML = `${pilotName} is ready for launch`;
-      copilot.innerHTML = `${copilotName} is ready for launch`;
-
       
-    });
       
     }
       
