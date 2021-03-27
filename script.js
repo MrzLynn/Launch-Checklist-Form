@@ -9,34 +9,36 @@ window.addEventListener("load", function() {
    const cargoMass = document.querySelector("input[name=cargoMass]");
    const faultyItems = document.getElementById("faultyItems");   
    const launchStatus = document.getElementById("launchStatus");
+   const fuelStatus = document.getElementById("fuelStatus");
+   const cargoStatus = document.getElementById("cargoStatus");
 
-   
-
-   if (pilotName.value === "" || isNaN(pilotName.value) && copilotName.value === "" || isNaN(copilotName.value) && !isNaN(fuelLevel.value) && !isNaN(cargoMass.value)) {
+   if (pilotName.value === "" || !isNaN(pilotName.value) || copilotName.value === "" || !isNaN(copilotName.value) || isNaN(fuelLevel.value) || isNaN(cargoMass.value)) {
      alert("All fields are required!");
      // stop the form submission 
             
   }
-   if (fuelLevel.value < 10000) {
-     fuelLevel.innerHTML = Number(fuelLevel.innerHTML);
-     faultyItems.style.visibilty = visible;
+   if (fuelLevel.value < 10000) { 
+      console.log('hello');
+      console.log(faultyItems);
+     faultyItems.style.visibilty = 'visible';
      launchStatus.innerHTML = "Shuttle not ready for launch";
-     colorBackground.style.background = 'red';
+     launchStatus.style.color = 'red';
    }
-   if (cargoMass.value > 10000) {
-     cargoMass.innerHTML = Number(cargoMass.innerHTML);
-     faultyItems.style.visibilty = visible;
+   if (cargoMass.value > 10000) {     
+     faultyItems.style.visibilty = 'visible';
      launchStatus.innerHTML = "Shuttle not ready for launch";
-     colorBackground.style.background = 'red';
-   } else {
+     launchStatus.style.color = 'red';
+   } else {      
       launchStatus.innerHTML = "Shuttle is ready to launch";
-      colorBackground.style.background = 'green';
+      launchStatus.style.color = 'green';
    }
   console.log(launchStatus);
   const pilot = document.getElementById("pilotStatus");
   const copilot = document.getElementById("copilotStatus");
-  pilot.innerHTML = `${pilotName} is ready for launch`;
-  copilot.innerHTML = `${copilotName} is ready for launch`;
+  pilot.innerHTML = `1. ${pilotName} is ready for launch`;
+  copilot.innerHTML = `2. ${copilotName} is ready for launch`;
+  fuelStatus.innerHTML = `3. ${fuelStatus} too low for launch`;
+  cargoStatus.innerHTML = `4. ${cargoStatus} mass loww enough for launch`;
   console.log(pilot.innerHTML);
   console.log(copilot.innerHTML);
   
