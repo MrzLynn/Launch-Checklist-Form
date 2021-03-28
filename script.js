@@ -40,8 +40,6 @@ window.addEventListener("load", function() {
   let copilot = document.getElementById("copilotStatus");  
   pilot.innerHTML = `${pilotName.value} is ready for launch`;
   copilot.innerHTML = `${copilotName.value} is ready for launch`;
-//   fuel.innerHTML = `Fuel level too low for launch`;
-//   cargo.innerHTML = `Cargo mass low enough for launch`;
   console.log(launchStatus);    
 });  
    
