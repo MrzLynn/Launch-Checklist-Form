@@ -37,22 +37,19 @@ window.addEventListener("load", function() {
    } 
   
   let pilot = document.getElementById("pilotStatus");
-  let copilot = document.getElementById("copilotStatus");
-  
+  let copilot = document.getElementById("copilotStatus");  
   pilot.innerHTML = `${pilotName.value} is ready for launch`;
   copilot.innerHTML = `${copilotName.value} is ready for launch`;
 //   fuel.innerHTML = `Fuel level too low for launch`;
 //   cargo.innerHTML = `Cargo mass low enough for launch`;
-  console.log(launchStatus);
-    
+  console.log(launchStatus);    
 });  
    
    fetch("https://handlers.education.launchcode.org/static/planets.json").then(function(response) {
       response.json().then(function(json) {
       let div = document.querySelector("#missionTarget");
       div.style.visibilty = "hidden";
-       let data = json[1];
-           
+       let data = json[1];           
         div.innerHTML =  `
          <h2>Mission Destination</h2>
             <ol>
@@ -62,17 +59,10 @@ window.addEventListener("load", function() {
                 <li>Distance from Earth: ${data.distance}</li>
                 <li>Number of Moons: ${data.moons}</li>
             </ol>
-        <img src="${data.image}"></img>`;
-        
-      });
-      
-      
-       
-   });
-      
-      
-    }
-      
+        <img src="${data.image}"></img>`;        
+      });           
+   });      
+    }     
 );
 
 
