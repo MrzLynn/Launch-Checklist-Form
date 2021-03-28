@@ -18,15 +18,17 @@ window.addEventListener("load", function() {
             
   }
    if (fuelLevel.value < 10000) { 
-      console.log('hello');
-      console.log(faultyItems);
-     faultyItems.style.visibilty = 'visible';
+     console.log('hello');
+     console.log(faultyItems);
+     faultyItems.style.visibility = 'visible';
      launchStatus.innerHTML = "Shuttle not ready for launch";
+     fuelStatus.innerHTML = "There is not enough fuel for the journey";
      launchStatus.style.color = 'red';
    }
    if (cargoMass.value > 10000) {     
-     faultyItems.style.visibilty = 'visible';
+     faultyItems.style.visibility = 'visible';
      launchStatus.innerHTML = "Shuttle not ready for launch";
+     cargoStatus.innerHTML = "There is too much mass for the shuttle to take off";
      launchStatus.style.color = 'red';
    } else {      
       launchStatus.innerHTML = "Shuttle is ready to launch";
@@ -38,7 +40,7 @@ window.addEventListener("load", function() {
   pilot.innerHTML = `1. ${pilotName} is ready for launch`;
   copilot.innerHTML = `2. ${copilotName} is ready for launch`;
   fuelStatus.innerHTML = `3. ${fuelStatus} too low for launch`;
-  cargoStatus.innerHTML = `4. ${cargoStatus} mass loww enough for launch`;
+  cargoStatus.innerHTML = `4. ${cargoStatus} mass low enough for launch`;
   console.log(pilot.innerHTML);
   console.log(copilot.innerHTML);
   
@@ -47,7 +49,7 @@ window.addEventListener("load", function() {
    fetch("https://handlers.education.launchcode.org/static/planets.json").then(function(response) {
       response.json().then(function(json) {
       const div = document.querySelector("#missionTarget");
-      
+      div.style.visibilty = "hidden";
        let data = json[1];
            
         div.innerHTML =  `
